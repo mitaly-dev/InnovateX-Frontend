@@ -1,5 +1,5 @@
 import React from "react";
-import Advertised from "../Advertised/Advertised";
+import Featured from "../Featured/Featured";
 import About from "../About/About";
 import { useTitle } from "../../Hook/useTitle";
 import { useEffect } from "react";
@@ -17,7 +17,7 @@ const Home = () => {
     <>
       <Banner />
 
-      <Advertised />
+      <Featured />
       <Categories />
       <About />
       <Gallery />
