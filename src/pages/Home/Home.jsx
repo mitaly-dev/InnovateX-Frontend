@@ -6,6 +6,7 @@ import { useTitle } from "../../Hook/useTitle";
 import { useEffect } from "react";
 import Banner from "../../Components/Banner";
 import Gallery from "../../Components/Gallery";
+import Activities from "../../Components/Activities";
 
 const Home = () => {
   useTitle("InnovateX");
