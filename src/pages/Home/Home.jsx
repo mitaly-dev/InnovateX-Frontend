@@ -1,7 +1,6 @@
 import React from "react";
 import Advertised from "../Advertised/Advertised";
 import Categories from "../Categories/Categories";
-import Activities from "./Activities/Activities";
 import About from "../About/About";
 import { useTitle } from "../../Hook/useTitle";
 import { useEffect } from "react";
