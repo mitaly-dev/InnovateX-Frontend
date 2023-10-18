@@ -2,10 +2,10 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import Spinner from "../Components/Spinner";
 import useRole from "../Hook/useRole";
-import AdminOption from "../Pages/Dashboard/Admin/AdminOption";
-import BuyerOption from "../Pages/Dashboard/Buyers/BuyerOption";
-import SellerOption from "../Pages/Dashboard/Sellers/SellerOption";
 import Navbar from "../Components/Navbar";
+import BuyerOption from "../Dashboard/Buyers/BuyerOption";
+import SellerOption from "../Dashboard/Sellers/SellerOption";
+import AdminOption from "../Dashboard/Admin/AdminOption";
 
 const DashboardLayout = () => {
   const user = {};

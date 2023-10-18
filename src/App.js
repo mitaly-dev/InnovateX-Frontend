@@ -3,6 +3,8 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./Routes/Routes";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 function App() {
   useEffect(() => {
@@ -11,7 +13,9 @@ function App() {
   }, []);
   return (
     <div className="font-roboto">
-      <RouterProvider router={router}></RouterProvider>
+      <Provider store={store}>
+        <RouterProvider router={router}></RouterProvider>
+      </Provider>
     </div>
   );
 }

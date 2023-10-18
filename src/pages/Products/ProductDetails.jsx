@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useTitle } from "../../../Hook/useTitle";
+import { useTitle } from "../../Hook/useTitle";
 
 const ProductDetails = () => {
   const location = useLocation();

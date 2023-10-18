@@ -1,10 +1,9 @@
 import React from "react";
-import { useContext } from "react";
-import Spinner from "../../Components/Spinner";
-import useRole from "../../Hook/useRole";
 import Lottie from "lottie-react";
-import welcome from "../../assets/animation/welcome.json";
-import { useTitle } from "../../Hook/useTitle";
+import welcome from "../assets/animation/welcome.json";
+import Spinner from "../Components/Spinner";
+import useRole from "../Hook/useRole";
+import { useTitle } from "../Hook/useTitle";
 
 const Dashboard = () => {
   useTitle("Dashboard");

@@ -4,39 +4,18 @@ import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import Navbar from "./Navbar";
 import { useEffect } from "react";
 import { useState } from "react";
+import banner from "../assets/images/banner.jpg";
 
 const Banner = () => {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <>
-      <div
-        className={`${
-          scrolled ? "bg-gray-900" : "bg-[#070750ad] "
-        } py-4 mx-auto px-4 sm:px-10 lg:px-20 font-roboto sticky top-0 z-50 shadow-sm duration-100 text-white `}
-      >
+      <div className={`  sticky top-0 z-50 shadow-sm duration-100 `}>
         <Navbar />
       </div>
 
       <div>
         <img
-          src="https://i.ibb.co/3zwjJs2/alexandre-pellaes-6v-Ajp0psc-X0-unsplash.jpg"
+          src={banner}
           className="absolute inset-0 object-cover w-full h-full"
           alt=""
         />

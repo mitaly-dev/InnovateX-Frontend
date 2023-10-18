@@ -4,7 +4,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { FaArrowRight, FaCartPlus, FaCross, FaHeart } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import BookingModal from "../../../Components/BookingModal";
+import BookingModal from "../../Components/BookingModal";
 
 const Product = ({ product }) => {
   const user = {};

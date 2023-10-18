@@ -1,7 +1,6 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
 import Activity from "./Activity";
-import { BiCalendarCheck } from "react-icons/bi";
+import backgroundImage from "../../assets/images/background-image.jpg";
 
 const Activities = () => {
   const activities = [
@@ -34,7 +33,7 @@ const Activities = () => {
   return (
     <section className="px-4 sm:px-8 lg:px-12 py-28 relative">
       <img
-        src="https://i.ibb.co/hR8x2KH/background-image.jpg"
+        src={backgroundImage}
         className="absolute inset-0 top-0 w-full h-full"
         alt=""
       />

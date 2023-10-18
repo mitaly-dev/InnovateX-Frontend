@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import Product from "../Categories/Products/Product";
+import Product from "../Products/Product";
 import SectionTitle from "../../Shared/SectionTitle";
 
 const Featured = () => {

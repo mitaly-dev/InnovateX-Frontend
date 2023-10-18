@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import Topbar from "../Shared/Topbar";
+import { useEffect } from "react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,6 +12,24 @@ const Navbar = () => {
   const logOutHandle = () => {
     navigate("/");
   };
+
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const menu = (
     <>
@@ -89,7 +108,11 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="flex items-center justify-between z-30">
+    <div
+      className={`${
+        scrolled ? "bg-gray-900" : "bg-[#070750ad] "
+      } flex items-center justify-between z-30  py-4 w-full mx-auto px-4 sm:px-10 lg:px-20 sticky top-0 shadow-sm duration-100 text-white `}
+    >
       <Link to="/" className="inline-flex items-center">
         {/* <img src={logo} alt="" className='w-8/12'/> */}
         <span className=" font-bold text-3xl">

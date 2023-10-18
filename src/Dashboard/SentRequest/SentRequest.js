@@ -1,6 +1,6 @@
 import React from "react";
 import toast from "react-hot-toast";
-import { useTitle } from "../../../Hook/useTitle";
+import { useTitle } from "../../Hook/useTitle";
 import { useState } from "react";
 import { useEffect } from "react";
 

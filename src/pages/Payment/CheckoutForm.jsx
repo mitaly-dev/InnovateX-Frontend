@@ -142,9 +142,9 @@ const CheckoutForm = ({ order }) => {
         </button>
       </form>
       {cardError && (
-        <p className="text-red-500 font-semibold font-roboto">{cardError}</p>
+        <p className="text-red-500 font-semibold font-jost">{cardError}</p>
       )}
-      <div className="text-[16px] mt-4 font-roboto">
+      <div className="text-[16px] mt-4 font-jost">
         {success && (
           <div>
             <p className="text-green-600">{success}</p>
