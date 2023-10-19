@@ -1,6 +1,6 @@
 import React from "react";
-import { useEffect } from "react";
 import { useTitle } from "../../Hook/useTitle";
+import aboutImg from "../../assets/images/about.jpg";
 
 const About = () => {
   useTitle("About");
@@ -39,7 +39,7 @@ const About = () => {
       <div data-aos="fade-right">
         <img
           className="object-cover w-full h-full col-span-2 rounded shadow-lg"
-          src="https://i.ibb.co/BPr6Hx5/about.jpg"
+          src={aboutImg}
           alt="about"
         />
       </div>

@@ -31,7 +31,7 @@ const Activities = () => {
   ];
 
   return (
-    <section className="px-4 sm:px-8 lg:px-12 py-28 relative">
+    <section className="px-4 sm:px-8 lg:px-12 py-28 my-20 relative">
       <img
         src={backgroundImage}
         className="absolute inset-0 top-0 w-full h-full"

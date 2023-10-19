@@ -1,5 +1,5 @@
 import React from "react";
-import Event from "../Events/Event";
+import Event from "../Event/Event";
 import SectionTitle from "../../Shared/SectionTitle";
 import { useGetEventsQuery } from "../../redux/api/events";
 import Spinner from "../../Components/Spinner";
@@ -8,7 +8,7 @@ const Featured = () => {
   const { data: advertised, isLoading } = useGetEventsQuery();
   console.log("advertised", advertised);
 
-  const content = { heads: "latest", title: "advertise" };
+  const content = { title: "Events" };
   if (isLoading) {
     return <Spinner />;
   }

@@ -14,10 +14,10 @@ export const userApi = createApi({
       providesTags: ["Users"],
     }),
     editUser: builder.mutation({
-      query: ({ id, ...rest }) => ({
+      query: ({ id, ...data }) => ({
         url: `/users/${id}`,
         method: "PATCH",
-        body: rest,
+        body: data,
       }),
       invalidatesTags: ["Users"],
     }),

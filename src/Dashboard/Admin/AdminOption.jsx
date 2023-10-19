@@ -6,32 +6,32 @@ const AdminOption = () => {
     <>
       <li>
         <NavLink
-          to="/dashboard/allSellers"
+          to="/dashboard/allBookings"
           className={({ isActive }) =>
             isActive ? "text-primary" : "text-secondary"
           }
         >
-          All Sellers
+          Bookings
         </NavLink>
       </li>
       <li>
         <NavLink
-          to="/dashboard/allBuyers"
+          to="/dashboard/add_event"
           className={({ isActive }) =>
             isActive ? "text-primary" : "text-secondary"
           }
         >
-          All Buyers
+          Add Event
         </NavLink>
       </li>
       <li>
         <NavLink
-          to="/dashboard/reportedItem"
+          to="/dashboard/all_event"
           className={({ isActive }) =>
             isActive ? "text-primary" : "text-secondary"
           }
         >
-          Reported Items
+          All Event
         </NavLink>
       </li>
     </>

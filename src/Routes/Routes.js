@@ -11,9 +11,16 @@ import Errorpage from "../pages/Errorpage";
 import Home from "../pages/Home/Home";
 import Categories from "../pages/Categories/Categories";
 import About from "../pages/About/About";
-import Events from "../pages/Events/Events";
-import EventDetails from "../pages/Events/EventDetails";
+import Events from "../pages/Event/Events";
+import EventDetails from "../pages/Event/EventDetails";
 import Payment from "../pages/Payment/Payment";
+import Profile from "../Dashboard/Profile/Profile";
+import MyBooking from "../Dashboard/User/MyBooking";
+import ConfirmBooking from "../Dashboard/User/ConfirmBooking";
+import UpdateProfile from "../Users/UpdateProfile";
+import AllBooking from "../Dashboard/Admin_SuperAdmin_Common/AllBooking";
+import AddEvent from "../Dashboard/Admin_SuperAdmin_Common/AddEvent";
+import AllEvent from "../Dashboard/Admin_SuperAdmin_Common/AllEvent";
 
 export const router = createBrowserRouter([
   {
@@ -60,13 +67,23 @@ export const router = createBrowserRouter([
           }),
         element: <Payment></Payment>,
       },
-      { path: "/productDetails", element: <EventDetails></EventDetails> },
+      { path: "/event_details/:id", element: <EventDetails></EventDetails> },
     ],
   },
   {
     path: "/dashboard",
     element: <DashboardLayout></DashboardLayout>,
     errorElement: <Errorpage></Errorpage>,
-    children: [{ path: "/dashboard", element: <Dashboard></Dashboard> }],
+    children: [
+      { path: "/dashboard", element: <Dashboard /> },
+      { path: "/dashboard/profile", element: <Profile /> },
+      { path: "/dashboard/my_booking", element: <MyBooking /> },
+      { path: "/dashboard/confirm_booking", element: <ConfirmBooking /> },
+      { path: "/dashboard/profile", element: <Profile></Profile> },
+      { path: "/dashboard/update_profile/:id", element: <UpdateProfile /> },
+      { path: "/dashboard/allBookings", element: <AllBooking /> },
+      { path: "/dashboard/add_event", element: <AddEvent /> },
+      { path: "/dashboard/all_event", element: <AllEvent /> },
+    ],
   },
 ]);
