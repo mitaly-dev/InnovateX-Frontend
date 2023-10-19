@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useTitle } from "../../Hook/useTitle";
 
-const ProductDetails = () => {
+const EventDetails = () => {
   const location = useLocation();
   const { state } = location;
 
@@ -101,4 +101,4 @@ const ProductDetails = () => {
   );
 };
 
-export default ProductDetails;
+export default EventDetails;

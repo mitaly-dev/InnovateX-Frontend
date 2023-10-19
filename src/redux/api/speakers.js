@@ -18,7 +18,7 @@ export const speakerApi = createApi({
       providesTags: ["Speakers"],
     }),
     getSpeakersByEvent: builder.query({
-      query: (id) => `/speakers/:${id}`,
+      query: (id) => `/speakers/${id}`,
       providesTags: ["Speakers"],
     }),
     getSpeaker: builder.query({

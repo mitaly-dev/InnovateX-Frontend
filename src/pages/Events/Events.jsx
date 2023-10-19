@@ -1,12 +1,12 @@
 import React from "react";
-import Product from "./Product";
+import Event from "./Event";
 import { useLoaderData } from "react-router-dom";
 import { useNavigation } from "react-router-dom";
 import { useEffect } from "react";
 import { useTitle } from "../../Hook/useTitle";
 import Spinner from "../../Components/Spinner";
 
-const Products = () => {
+const Events = () => {
   const navigation = useNavigation();
   const products = useLoaderData();
   useTitle("Products");
@@ -24,12 +24,12 @@ const Products = () => {
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
         data-aos="fade-up"
       >
-        {products.map((product) => (
-          <Product key={product._id} product={product}></Product>
+        {products.map((event) => (
+          <Event key={event._id} event={event}></Event>
         ))}
       </div>
     </section>
   );
 };
 
-export default Products;
+export default Events;

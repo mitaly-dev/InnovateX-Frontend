@@ -1,67 +1,35 @@
 import React from "react";
-import { useContext } from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { FaArrowRight, FaCartPlus, FaCross, FaHeart } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import BookingModal from "../../Components/BookingModal";
 
-const Product = ({ product }) => {
+const Event = ({ event }) => {
+  console.log("event=============", event);
   const user = {};
   const [optionOpen, setOptionOpen] = useState(false);
   const [bookingModalData, setBookingModalData] = useState(null);
   const navigate = useNavigate();
+
   const {
     title,
-    verify,
-    email,
-    location,
-    sellerName,
-    time,
-    yearsOfPurchase,
-    condition,
-    category,
-    originalPrice,
-    resalePrice,
-    _id,
-    image,
     description,
-  } = product;
-
-  const reportHandle = () => {
-    const product = {
-      image,
-      title,
-      category,
-      userEmail: user?.email,
-      email,
-      sellerName,
-      resalePrice,
-    };
-    fetch(`${process.env.REACT_APP_PORT}/reportedProduct`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(product),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.acknowledged) {
-          toast.success("Report to admin successfull");
-        } else {
-          toast.error(data.message, { duration: 1200 });
-        }
-      })
-      .catch((error) => console.log(error));
-  };
+    location,
+    totalSeats,
+    availableSeats,
+    price,
+    eventDate,
+    imageUrl,
+    categoryId,
+  } = event;
 
   const wishListHandle = () => {
     const product = {
-      productImg: image,
+      imageUrl,
       title,
-      category,
-      price: resalePrice,
+      categoryId,
+      price,
       name: user?.displayName,
       email: user?.email,
     };
@@ -84,7 +52,7 @@ const Product = ({ product }) => {
   };
 
   const productDetailsHandle = () => {
-    navigate("/productDetails", { state: product });
+    navigate(`/event_details/${event?._id}`);
   };
 
   return (
@@ -97,17 +65,17 @@ const Product = ({ product }) => {
               to="#"
               className=" font-semibold capitalize"
             >
-              {sellerName}
+              seller
             </p>
-            {verify && (
+            {/* {verify && (
               <img
                 src="https://i.ibb.co/D8SPXJg/verified-2.png"
                 alt=""
                 className="w-4 h-4 ml-2"
               />
-            )}
+            )} */}
           </div>
-          <span className="text-xs dark:text-gray-400">{time}</span>
+          <span className="text-xs dark:text-gray-400">{eventDate}</span>
         </div>
         <div className="relative">
           <button onClick={() => setOptionOpen(!optionOpen)} type="button">
@@ -146,10 +114,7 @@ const Product = ({ product }) => {
               >
                 <FaHeart className="text-red-600 mr-4"></FaHeart>add to wishlist
               </button>
-              <button
-                onClick={reportHandle}
-                className="capitalize flex items-center"
-              >
+              <button className="capitalize flex items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -172,7 +137,7 @@ const Product = ({ product }) => {
       </div>
       <div>
         <img
-          src={image}
+          src={imageUrl}
           alt=""
           className="object-cover w-full mb-4 h-60 sm:h-96 dark:bg-gray-500"
         />
@@ -187,31 +152,28 @@ const Product = ({ product }) => {
         </p>
         <p>
           <span className="font-semibold">Years Of Purchase :</span>{" "}
-          {yearsOfPurchase}
+          yearsOfPurchase
         </p>
         <p>
-          <span className="font-semibold">Condition :</span> {condition}
+          <span className="font-semibold">Condition :</span> condition
         </p>
         <p>
-          <span className="font-semibold">Original Price :</span> $
-          {originalPrice}
+          <span className="font-semibold">Original Price :</span> ${price}
         </p>
         <p className="mt-2 font-semibold">
           Resale Price{" "}
-          <span className="text-red-600 font-semibold text-2xl">
-            ${resalePrice}
-          </span>
+          <span className="text-red-600 font-semibold text-2xl">${price}</span>
         </p>
         <div className="flex justify-between items-center">
           <label
             onClick={() => {
-              setBookingModalData(product);
+              setBookingModalData(event);
               !user?.uid &&
                 toast.error("please login first then book product", {
                   duration: 1200,
                 });
             }}
-            htmlFor={`booking-modal${_id}`}
+            htmlFor={`booking-modal${event?._id}`}
             className="inline-flex items-center font-semibold px-6 py-2 bg-primary hover:bg-orange-600 text-white text-lg  cursor-pointer mt-7 "
           >
             <FaCartPlus className="mr-2"></FaCartPlus>
@@ -223,7 +185,7 @@ const Product = ({ product }) => {
         </div>
         {bookingModalData && user?.uid && (
           <BookingModal
-            product={product}
+            event={event}
             setBookingModalData={setBookingModalData}
           ></BookingModal>
         )}
@@ -232,4 +194,4 @@ const Product = ({ product }) => {
   );
 };
 
-export default Product;
+export default Event;

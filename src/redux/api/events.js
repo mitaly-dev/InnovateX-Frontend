@@ -45,7 +45,7 @@ export const eventApi = createApi({
       invalidatesTags: ["Event"],
     }),
     getReviewAndRatings: builder.query({
-      query: (id) => `/review_rating/:${id}`,
+      query: (id) => `/review_rating/${id}`,
       providesTags: ["Event"],
     }),
   }),

@@ -12,8 +12,10 @@ const Categories = () => {
   }, []);
 
   const { data: categories, isLoading } = useGetCategoriesQuery();
-  console.log("categories", categories);
 
+  if (isLoading) {
+    return <Spinner />;
+  }
   return (
     <section
       className="px-4 sm:px-10 lg:px-20 py-32"

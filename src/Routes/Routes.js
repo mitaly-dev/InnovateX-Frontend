@@ -11,8 +11,8 @@ import Errorpage from "../pages/Errorpage";
 import Home from "../pages/Home/Home";
 import Categories from "../pages/Categories/Categories";
 import About from "../pages/About/About";
-import Products from "../pages/Products/Products";
-import ProductDetails from "../pages/Products/ProductDetails";
+import Events from "../pages/Events/Events";
+import EventDetails from "../pages/Events/EventDetails";
 import Payment from "../pages/Payment/Payment";
 
 export const router = createBrowserRouter([
@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
           ),
         element: (
           <PrivateRoute>
-            <Products></Products>
+            <Events></Events>
           </PrivateRoute>
         ),
       },
@@ -60,7 +60,7 @@ export const router = createBrowserRouter([
           }),
         element: <Payment></Payment>,
       },
-      { path: "/productDetails", element: <ProductDetails></ProductDetails> },
+      { path: "/productDetails", element: <EventDetails></EventDetails> },
     ],
   },
   {

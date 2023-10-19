@@ -4,11 +4,13 @@ import { FaUser } from "react-icons/fa";
 import Topbar from "../Shared/Topbar";
 import { useEffect } from "react";
 import { getUserInfo } from "../utils/local-storage";
+import { useGetUserQuery } from "../redux/api/user";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const user = getUserInfo();
+  const userInfo = getUserInfo();
+  const { data: user } = useGetUserQuery(userInfo?.userId);
 
   const logOutHandle = () => {
     localStorage.removeItem("token");
@@ -91,7 +93,7 @@ const Navbar = () => {
           Blog
         </NavLink>
       </li>
-      {user?.userId && (
+      {userInfo?.userId && (
         <li className="hover:border-b-2 border-b-primary duration-100">
           <NavLink
             to="/dashboard"
@@ -126,7 +128,7 @@ const Navbar = () => {
         {menu}
       </ul>
       <ul className="flex items-center hidden space-x-8 lg:flex">
-        {user?.userId ? (
+        {userInfo?.userId ? (
           <>
             <li>
               <button
@@ -138,7 +140,7 @@ const Navbar = () => {
             </li>
             <div className="avatar">
               <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                <img src={user?.profileImg} alt="userImage" />
+                <img src={user?.data?.profileImg} alt="userImage" />
               </div>
             </div>
           </>
@@ -212,7 +214,7 @@ const Navbar = () => {
               <nav>
                 <ul className="space-y-4">
                   {menu}
-                  {user?.userId ? (
+                  {userInfo?.userId ? (
                     <>
                       <li>
                         <button
@@ -224,7 +226,7 @@ const Navbar = () => {
                       </li>
                       <div className="avatar">
                         <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                          <img src={user?.profileImg} alt="userImage" />
+                          <img src={user?.data?.profileImg} alt="userImage" />
                         </div>
                       </div>
                     </>

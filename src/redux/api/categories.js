@@ -23,7 +23,7 @@ export const categoriesApi = createApi({
     }),
     editCategory: builder.mutation({
       query: ({ id, ...rest }) => ({
-        url: `/categories/${id}`,
+        url: `/categories/:${id}`,
         method: "PATCH",
         body: rest,
       }),
