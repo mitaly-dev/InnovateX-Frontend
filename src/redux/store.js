@@ -5,6 +5,7 @@ import { eventApi } from "./api/events";
 import { speakerApi } from "./api/speakers";
 import { userApi } from "./api/user";
 import { bookingApi } from "./api/booking";
+import { feedbackApi } from "./api/feedback";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     [eventApi.reducerPath]: eventApi.reducer,
     [speakerApi.reducerPath]: speakerApi.reducer,
     [bookingApi.reducerPath]: bookingApi.reducer,
+    [feedbackApi.reducerPath]:feedbackApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
@@ -23,6 +25,7 @@ const store = configureStore({
       eventApi.middleware,
       speakerApi.middleware,
       bookingApi.middleware
+      feedbackApi.middleware
     ), // Add the authApi middleware
 });
 

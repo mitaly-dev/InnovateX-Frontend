@@ -23,7 +23,7 @@ const UpdateProfile = () => {
   useEffect(() => {
     setProfileInfo(user?.data);
   }, [user]);
-  console.log("ppppppppppppppppp profileInfo", profileInfo);
+
   useTitle("Update-Profile");
   const [load, setLoad] = useState(false);
 

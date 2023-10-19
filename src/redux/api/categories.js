@@ -2,7 +2,13 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const categoriesApi = createApi({
   reducerPath: "categoriesApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/v1" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "http://localhost:5000/api/v1",
+    prepareHeaders: (headers, { getState }) => {
+      headers.set("Authorization", localStorage.getItem("token"));
+      return headers;
+    },
+  }),
   tagTypes: ["Category"],
   endpoints: (builder) => ({
     createCategories: builder.mutation({

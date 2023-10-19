@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { imageUpload } from "../API/imageUpload";
 import toast from "react-hot-toast";
@@ -11,6 +11,8 @@ import { useEffect } from "react";
 import { useCreateUserMutation, useSignInMutation } from "../redux/api/auth";
 
 const Register = () => {
+  const location = useLocation();
+  const { role: adminRole } = location?.state;
   const [createUser, { data, isSuccess, isError, error }] =
     useCreateUserMutation();
 
@@ -50,7 +52,6 @@ const Register = () => {
     const name = data.name;
     const email = data.email;
     const password = data.password;
-    const role = data.role;
     const image = data.image[0];
 
     const formData = new FormData();
@@ -65,7 +66,7 @@ const Register = () => {
             name,
             email,
             profileImg: photo,
-            role: "user",
+            role: adminRole ? adminRole : "user",
             password,
           };
           console.log(user);
@@ -90,7 +91,7 @@ const Register = () => {
               <div className="bg-white rounded shadow-2xl p-7 sm:p-10">
                 <div className="flex justify-between mb-4">
                   <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
-                    Register
+                    Create
                   </h3>
                 </div>
                 <form

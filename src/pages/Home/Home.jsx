@@ -8,6 +8,7 @@ import Categories from "../Categories/Categories";
 import Gallery from "../../Components/Gallery";
 import Activities from "../../Components/Activities/Activities";
 import { getUserInfo } from "../../utils/local-storage";
+import Feedback from "../../Components/Feedback/Feedback";
 
 const Home = () => {
   getUserInfo();
@@ -23,6 +24,7 @@ const Home = () => {
       <Activities />
       <About />
       <Gallery />
+      <Feedback />
     </>
   );
 };

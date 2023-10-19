@@ -21,6 +21,8 @@ import UpdateProfile from "../Users/UpdateProfile";
 import AllBooking from "../Dashboard/Admin_SuperAdmin_Common/AllBooking";
 import AddEvent from "../Dashboard/Admin_SuperAdmin_Common/AddEvent";
 import AllEvent from "../Dashboard/Admin_SuperAdmin_Common/AllEvent";
+import AllUsers from "../Dashboard/Admin_SuperAdmin_Common/AllUsers";
+import EditEvent from "../Dashboard/Admin_SuperAdmin_Common/EditEvent";
 
 export const router = createBrowserRouter([
   {
@@ -54,19 +56,6 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      { path: "/payment", element: <Payment></Payment> },
-      {
-        path: "/payment/:title",
-        loader: async ({ params }) =>
-          fetch(`${process.env.REACT_APP_PORT}/order/payment/${params.title}`, {
-            headers: {
-              authorization: `Bearer ${localStorage.getItem(
-                "furniture-token"
-              )}`,
-            },
-          }),
-        element: <Payment></Payment>,
-      },
       { path: "/event_details/:id", element: <EventDetails></EventDetails> },
     ],
   },
@@ -84,6 +73,8 @@ export const router = createBrowserRouter([
       { path: "/dashboard/allBookings", element: <AllBooking /> },
       { path: "/dashboard/add_event", element: <AddEvent /> },
       { path: "/dashboard/all_event", element: <AllEvent /> },
+      { path: "/dashboard/all_users", element: <AllUsers /> },
+      { path: "/dashboard/edit_event/:id", element: <EditEvent /> },
     ],
   },
 ]);

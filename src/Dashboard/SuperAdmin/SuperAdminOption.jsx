@@ -1,18 +1,19 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const SuperAdminOption = () => {
+  const navigate = useNavigate();
   return (
     <>
       <li>
-        <NavLink
-          to="/dashboard/addAdmin"
+        <button
+          onClick={() => navigate("/register", { state: { role: "admin" } })}
           className={({ isActive }) =>
             isActive ? "text-primary" : "text-secondary"
           }
         >
           Add Admin
-        </NavLink>
+        </button>
       </li>
       <li>
         <NavLink
@@ -42,6 +43,16 @@ const SuperAdminOption = () => {
           }
         >
           All Event
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/dashboard/all_users"
+          className={({ isActive }) =>
+            isActive ? "text-primary" : "text-secondary"
+          }
+        >
+          All User
         </NavLink>
       </li>
     </>

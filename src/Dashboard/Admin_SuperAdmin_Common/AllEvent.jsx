@@ -11,13 +11,15 @@ import {
 const AllEvent = () => {
   const userInfo = getUserInfo();
   const { data } = useGetEventsQuery();
-  const [deleteEvent, { isSuccess: cancelSuccess }] = useDeleteEventMutation();
+  const [deleteEvent, { isSuccess: cancelSuccess, isError, error }] =
+    useDeleteEventMutation();
   const [editEvent, { isSuccess: updateSuccess }] = useEditEventMutation();
   console.log(data);
 
   //   cancel booking
-  const deleteEventHandle = (bookingId) => {
-    deleteEvent(bookingId);
+  const deleteEventHandle = (eventId) => {
+    console.log("eventId", eventId);
+    deleteEvent(eventId);
   };
 
   //   update booking
@@ -27,6 +29,9 @@ const AllEvent = () => {
   useEffect(() => {
     if (cancelSuccess) {
       toast.error("Booking Removed");
+    }
+    if (isError) {
+      toast.error("Something is wrong");
     }
     if (updateSuccess) {
       toast.success("Booking Confirmed!");
@@ -60,7 +65,7 @@ const AllEvent = () => {
                       <p className="text-lg font-semibold">{item?.price}€</p>
                     </div>
                   </div>
-                  <div className="flex text-sm divide-x">
+                  <div className="flex text-sm divide-x items-center">
                     <button
                       onClick={() => deleteEventHandle(item?.id)}
                       type="button"
@@ -79,13 +84,12 @@ const AllEvent = () => {
                       </svg>
                       <span>Remove</span>
                     </button>
-                    <button
-                      onClick={() => updateEvent(item?.id)}
-                      type="button"
-                      className=" px-2 py-1 space-x-1 bg-primary text-white rounded-md text-center"
+                    <Link
+                      to={`/dashboard/edit_event/${item?.id}`}
+                      className="border px-2 py-1 rounded-lg"
                     >
-                      Confirm
-                    </button>
+                      Edit
+                    </Link>
                   </div>
                 </div>
               </div>

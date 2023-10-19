@@ -33,6 +33,16 @@ const AdminOption = () => {
         >
           All Event
         </NavLink>
+      </li>{" "}
+      <li>
+        <NavLink
+          to="/dashboard/all_users"
+          className={({ isActive }) =>
+            isActive ? "text-primary" : "text-secondary"
+          }
+        >
+          All User
+        </NavLink>
       </li>
     </>
   );

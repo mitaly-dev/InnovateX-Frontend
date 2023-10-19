@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
-import Topbar from "../Shared/Topbar";
 import { useEffect } from "react";
 import { getUserInfo } from "../utils/local-storage";
 import { useGetUserQuery } from "../redux/api/user";
@@ -189,8 +188,8 @@ const Navbar = () => {
                 <div>
                   <Link to="/" className="inline-flex items-center">
                     {/* <img src={logo} alt="" className='w-8/12'/> */}
-                    <span className="text-secondary font-bold text-3xl">
-                      furniture<span className="text-primary">M</span>arket
+                    <span className=" font-bold text-3xl">
+                      Innovate<span className="text-primary">X</span>
                       <span className="text-primary">.</span>
                     </span>
                   </Link>
