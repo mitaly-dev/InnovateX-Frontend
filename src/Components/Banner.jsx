@@ -54,7 +54,7 @@ const Banner = () => {
               </div>
 
               <Link
-                to="/categories"
+                to="/dashboard/allBookings"
                 aria-label=""
                 className="inline-flex items-center gap-2 font-semibold px-4 py-2  sm:px-6 sm:py-3 text-base bg-primary sm:text-xl my-5 rounded-md bg-gradient-to-b from-primary to-[#ea551bbf] hover:bg-gradient-to-t duration-200"
               >

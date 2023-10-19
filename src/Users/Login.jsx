@@ -7,6 +7,7 @@ import { useTitle } from "../Hook/useTitle";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useSignInMutation } from "../redux/api/auth";
+import backgroundImages from "../assets/images/about.jpg";
 
 const Login = () => {
   const [singIn, { data, isSuccess, isError, error }] = useSignInMutation();
@@ -64,7 +65,7 @@ const Login = () => {
   return (
     <div className="relative">
       <img
-        src="https://i.ibb.co/McgcXpd/spacejoy-Yn-LJ3r-M4-Vt-I-unsplash.jpg"
+        src={backgroundImages}
         className="absolute inset-0 object-cover w-full h-full"
         alt=""
       />

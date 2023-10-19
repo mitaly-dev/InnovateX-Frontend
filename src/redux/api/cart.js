@@ -2,7 +2,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const cartApi = createApi({
   reducerPath: "cartApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/v1" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://innovatex-prisma.vercel.app/api/v1",
+  }),
   tagTypes: ["Cart"],
   endpoints: (builder) => ({
     addToCart: builder.mutation({

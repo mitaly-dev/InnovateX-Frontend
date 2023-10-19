@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const categoriesApi = createApi({
   reducerPath: "categoriesApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/v1",
+    baseUrl: "https://innovatex-prisma.vercel.app/api/v1",
     prepareHeaders: (headers, { getState }) => {
       headers.set("Authorization", localStorage.getItem("token"));
       return headers;

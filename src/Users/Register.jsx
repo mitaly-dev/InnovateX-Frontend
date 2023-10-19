@@ -8,11 +8,13 @@ import { dbUser } from "../API/user";
 import { useTitle } from "../Hook/useTitle";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useCreateUserMutation, useSignInMutation } from "../redux/api/auth";
+
+import backgroundImages from "../assets/images/about.jpg";
+import { useCreateUserMutation } from "../redux/api/auth";
 
 const Register = () => {
   const location = useLocation();
-  const { role: adminRole } = location?.state;
+  const state = location?.state;
   const [createUser, { data, isSuccess, isError, error }] =
     useCreateUserMutation();
 
@@ -66,7 +68,7 @@ const Register = () => {
             name,
             email,
             profileImg: photo,
-            role: adminRole ? adminRole : "user",
+            role: state?.role ? state?.role : "user",
             password,
           };
           console.log(user);
@@ -80,7 +82,7 @@ const Register = () => {
   return (
     <div className="relative">
       <img
-        src="https://i.ibb.co/McgcXpd/spacejoy-Yn-LJ3r-M4-Vt-I-unsplash.jpg"
+        src={backgroundImages}
         className="absolute inset-0 object-cover w-full h-full"
         alt=""
       />
