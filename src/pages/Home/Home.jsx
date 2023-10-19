@@ -7,8 +7,10 @@ import Featured from "../Featured/Featured";
 import Categories from "../Categories/Categories";
 import Gallery from "../../Components/Gallery";
 import Activities from "../../Components/Activities/Activities";
+import { getUserInfo } from "../../utils/local-storage";
 
 const Home = () => {
+  getUserInfo();
   useTitle("InnovateX");
   useEffect(() => {
     window.scrollTo(0, 0);

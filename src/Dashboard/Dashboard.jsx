@@ -1,17 +1,13 @@
 import React from "react";
 import Lottie from "lottie-react";
 import welcome from "../assets/animation/welcome.json";
-import Spinner from "../Components/Spinner";
-import useRole from "../Hook/useRole";
 import { useTitle } from "../Hook/useTitle";
+import { getUserInfo } from "../utils/local-storage";
 
 const Dashboard = () => {
   useTitle("Dashboard");
-  const user = {};
-  const [role, isRoleLoading, isVerify] = useRole(user?.email);
-  if (isRoleLoading) {
-    return <Spinner></Spinner>;
-  }
+  const user = getUserInfo();
+
   return (
     <div className="flex min-h-[60vh] justify-center items-center">
       <Lottie animationData={welcome} loop={true}></Lottie>

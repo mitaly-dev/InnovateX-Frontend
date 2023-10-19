@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "innovateX",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,6 +13,7 @@
     "aos": "^2.3.4",
     "axios": "^1.2.0",
     "daisyui": "^2.41.0",
+    "jwt-decode": "^3.1.2",
     "lottie-react": "^2.3.1",
     "react": "^18.2.0",
     "react-context-api": "^1.0.2",

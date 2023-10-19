@@ -7,8 +7,11 @@ import { jwtToken } from "../API/access-jwt-token";
 import { useTitle } from "../Hook/useTitle";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useSignInMutation } from "../redux/api/auth";
 
 const Login = () => {
+  const [singIn, { data, isSuccess, isError, error }] = useSignInMutation();
+
   useTitle("Login");
   const {
     register,
@@ -27,37 +30,37 @@ const Login = () => {
     console.log("login");
   };
   const logOut = () => {
-    console.log("login");
+    localStorage.removeItem("token");
+    navigate(from, { replace: true });
   };
 
+  useEffect(() => {
+    if (isSuccess) {
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        toast.success("Login successfull", { duration: 1200 });
+        setLoad(false);
+        navigate(from, { replace: true });
+      } else {
+        setLoad(false);
+        toast.error(data.message);
+        logOut();
+      }
+    }
+    if (isError) {
+      console.log("error?.data", error?.data);
+      setLoad(false);
+      toast.error(error?.data?.message, { duration: 1200 });
+
+      logOut();
+    }
+  }, [isSuccess, isError]);
   const userSignInHandle = (data) => {
     setLoad(true);
     const email = data.email;
     const password = data.password;
-
-    userSignIn(email, password)
-      .then((result) => {
-        jwtToken(email)
-          .then((data) => {
-            if (data.accessToken) {
-              localStorage.setItem("furniture-token", data.accessToken);
-              toast.success("Login successfull", { duration: 1200 });
-              setLoad(false);
-              navigate(from, { replace: true });
-            } else {
-              setLoad(false);
-              toast.error(data.message);
-              logOut();
-            }
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      })
-      .catch((error) => {
-        setLoad(false);
-        toast.error(error.message, { duration: 1200 });
-      });
+    console.log({ email, password });
+    singIn({ email, password });
   };
   return (
     <div className="relative">

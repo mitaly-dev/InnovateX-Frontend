@@ -9,8 +9,12 @@ import { dbUser } from "../API/user";
 import { useTitle } from "../Hook/useTitle";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useCreateUserMutation, useSignInMutation } from "../redux/api/auth";
 
 const Register = () => {
+  const [createUser, { data, isSuccess, isError, error }] =
+    useCreateUserMutation();
+
   useTitle("Register");
   const [load, setLoad] = useState(false);
   const {
@@ -20,16 +24,24 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  const createUser = () => {
-    console.log("create");
-  };
+
   const updateUserProfile = () => {
     console.log("updateprofile");
   };
   const logOut = () => {
     console.log("logout");
   };
-
+  useEffect(() => {
+    if (isSuccess) {
+      setLoad(false);
+      toast.success("Signup successfull", { duration: 1200 });
+      navigate("/login");
+    }
+    if (isError) {
+      setLoad(false);
+      toast.error(error?.data?.message, { duration: 1200 });
+    }
+  }, [isSuccess, isError]);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -48,58 +60,17 @@ const Register = () => {
     imageUpload(formData)
       .then((data) => {
         if (data.success) {
-          reset();
+          //reset();
           const photo = data.data.display_url;
-          createUser(email, password)
-            .then((result) => {
-              logOut();
-              const profile = {
-                displayName: name,
-                photoURL: photo,
-              };
-              updateUserProfile(profile)
-                .then((result) => {
-                  const user = {
-                    name,
-                    email,
-                    image: photo,
-                    role: role,
-                  };
-                  dbUser(user)
-                    .then((data) => {
-                      if (data.acknowledged) {
-                        jwtToken(email)
-                          .then((data) => {
-                            if (data.accessToken) {
-                              localStorage.setItem(
-                                "furniture-token",
-                                data.accessToken
-                              );
-                              toast.success("Registration successfull", {
-                                duration: 1200,
-                              });
-                              setLoad(false);
-                              navigate("/login");
-                            }
-                          })
-                          .catch((error) => console.error(error));
-                      } else {
-                        setLoad(false);
-                        toast.error(data.message, { duration: 2000 });
-                      }
-                    })
-                    .catch((error) => {
-                      setLoad(false);
-                    });
-                })
-                .catch((error) => {
-                  setLoad(false);
-                });
-            })
-            .catch((error) => {
-              setLoad(false);
-              toast.error(error.message, { duration: 1200 });
-            });
+          const user = {
+            name,
+            email,
+            profileImg: photo,
+            role: "user",
+            password,
+          };
+          console.log(user);
+          createUser(user);
         }
       })
       .catch((error) => {
@@ -194,14 +165,10 @@ const Register = () => {
                     <input
                       {...register("password", {
                         required: "Password is required!",
-                        pattern: {
-                          value: /(?=.*[!@#$&*])/,
-                          message:
-                            "password should be minimum one special character",
-                        },
+
                         minLength: {
-                          value: 6,
-                          message: "password should be must 6 characters",
+                          value: 5,
+                          message: "password should be must 5 characters",
                         },
                       })}
                       type="password"
@@ -212,32 +179,7 @@ const Register = () => {
                       <p className="text-red-600">{errors?.password.message}</p>
                     )}
                   </div>
-                  <div className="space-y-1 text-sm">
-                    <label
-                      htmlFor="role"
-                      className="block mb-1 font-medium text-[16px]"
-                    >
-                      Select Role
-                    </label>
-                    <div className="flex items-center space-x-6 w-full mt-1">
-                      <input
-                        type="radio"
-                        {...register("role")}
-                        className="radio mr-2"
-                        value={"buyer"}
-                        checked
-                      />
-                      Buyer
-                      <input
-                        type="radio"
-                        {...register("role")}
-                        style={{ marginRight: "10px" }}
-                        className="radio"
-                        value={"seller"}
-                      />
-                      Seller
-                    </div>
-                  </div>
+
                   <button
                     type="submit"
                     className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-primary"

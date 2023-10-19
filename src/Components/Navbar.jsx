@@ -3,13 +3,15 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import Topbar from "../Shared/Topbar";
 import { useEffect } from "react";
+import { getUserInfo } from "../utils/local-storage";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const user = {};
   const navigate = useNavigate();
+  const user = getUserInfo();
 
   const logOutHandle = () => {
+    localStorage.removeItem("token");
     navigate("/");
   };
 
@@ -35,7 +37,7 @@ const Navbar = () => {
     <>
       <li className="hover:border-b-2 border-b-primary duration-100">
         <NavLink
-          to="/"
+          to="/home"
           aria-label="home"
           title="home"
           className={({ isActive }) =>
@@ -89,7 +91,7 @@ const Navbar = () => {
           Blog
         </NavLink>
       </li>
-      {user && (
+      {user?.userId && (
         <li className="hover:border-b-2 border-b-primary duration-100">
           <NavLink
             to="/dashboard"
@@ -124,7 +126,7 @@ const Navbar = () => {
         {menu}
       </ul>
       <ul className="flex items-center hidden space-x-8 lg:flex">
-        {user?.uid ? (
+        {user?.userId ? (
           <>
             <li>
               <button
@@ -136,7 +138,7 @@ const Navbar = () => {
             </li>
             <div className="avatar">
               <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                <img src={user?.photoURL} alt="userImage" />
+                <img src={user?.profileImg} alt="userImage" />
               </div>
             </div>
           </>
@@ -210,7 +212,7 @@ const Navbar = () => {
               <nav>
                 <ul className="space-y-4">
                   {menu}
-                  {user?.uid ? (
+                  {user?.userId ? (
                     <>
                       <li>
                         <button
@@ -222,7 +224,7 @@ const Navbar = () => {
                       </li>
                       <div className="avatar">
                         <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                          <img src={user?.photoURL} alt="userImage" />
+                          <img src={user?.profileImg} alt="userImage" />
                         </div>
                       </div>
                     </>

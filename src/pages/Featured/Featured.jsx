@@ -1,17 +1,9 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
 import Product from "../Products/Product";
 import SectionTitle from "../../Shared/SectionTitle";
 
 const Featured = () => {
-  const { data: advertised = [], isError } = useQuery({
-    queryKey: ["advertised"],
-    queryFn: async () => {
-      const res = await fetch(`${process.env.REACT_APP_PORT}/advertised`);
-      const data = await res.json();
-      return data;
-    },
-  });
+  const advertised = [];
 
   const content = { heads: "latest", title: "advertise" };
   return (
