@@ -5,44 +5,58 @@ export const eventApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/v1" }),
   tagTypes: ["Event"],
   endpoints: (builder) => ({
-    createCategories: builder.mutation({
+    createEvent: builder.mutation({
       query: (data) => ({
-        url: "/categories",
+        url: "/events",
         method: "POST",
         body: data,
       }),
       invalidatesTags: ["Event"],
     }),
-    getCategories: builder.query({
-      query: () => `/categories`,
+    getEvents: builder.query({
+      query: () => `/events`,
       providesTags: ["Event"],
     }),
-    getCategory: builder.query({
-      query: (id) => `/categories/${id}`,
+    getEvent: builder.query({
+      query: (id) => `/events/${id}`,
       providesTags: ["Event"],
     }),
-    editCategory: builder.mutation({
+    editEvent: builder.mutation({
       query: ({ id, ...rest }) => ({
-        url: `/categories/${id}`,
+        url: `/events/${id}`,
         method: "PATCH",
         body: rest,
       }),
       invalidatesTags: ["Event"],
     }),
-    deleteCategory: builder.mutation({
+    deleteEvent: builder.mutation({
       query: (id) => ({
-        url: `/categories/${id}`,
+        url: `/events/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Event"],
+    }),
+    createReviewAndRating: builder.mutation({
+      query: (data) => ({
+        url: "/review_rating",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Event"],
+    }),
+    getReviewAndRatings: builder.query({
+      query: (id) => `/review_rating/:${id}`,
+      providesTags: ["Event"],
     }),
   }),
 });
 
 export const {
-  useCreateCategoriesMutation,
-  useGetCategoriesQuery,
-  useGetCategoryQuery,
-  useEditCategoryMutation,
-  useDeleteCategoryMutation,
+  useCreateEventMutation,
+  useGetEventQuery,
+  useGetEventsQuery,
+  useEditEventMutation,
+  useDeleteEventMutation,
+  useCreateReviewAndRatingMutation,
+  useGetReviewAndRatingsQuery,
 } = eventApi;
