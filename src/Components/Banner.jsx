@@ -25,10 +25,6 @@ const Banner = () => {
               <h2 className=" mb-6 font-roboto text-3xl font-semibold tracking-tight sm:text-5xl">
                 Innovate<span className="text-primary">X</span> Conference 2023
               </h2>
-              <p className=" mb-4 text-base md:text-2xl">
-                Sell ​​your used products and buy other people's used products
-              </p>
-
               <div className="relative text-white border bg-[#ffffff56] rounded-md w-2/3 m-auto">
                 <span className="absolute inset-y-0 left-0 flex items-center pl-2">
                   <button
